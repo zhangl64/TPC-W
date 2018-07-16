@@ -26,7 +26,8 @@ zhangl64@mcmaster.ca
 
 If you use this TPC-W as part of your academic publication, we request that you cite our work as follows:
 
-```@article{zhang2018apem,
+```
+@article{zhang2018apem,
 	title={{APEM} --- Approximate Performance Evaluation for Multi-Core Computers},
 	author={Zhang, Lei and Down, Douglas G},
 	journal={Journal of Circuits, Systems and Computers},
