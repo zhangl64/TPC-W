@@ -1,0 +1,6 @@
+Lei
+zhangl64@mcmaster.ca
+
+This is implementation of TPC-W is designed for a semi-open queueing networks:
+- New EB arrivals follow a Poisson process with a certain rate.
+- New requests within a EB wait for an exponential distributed time interval and send another request.
