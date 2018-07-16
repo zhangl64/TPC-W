@@ -1,0 +1,58 @@
+<project name="TPCW" default="dist" basedir=".">
+  <!-- set properties for this build -->
+  <property name="src" value="." />
+  <property name="dist" value="./dist" />
+  <property name="classes.dir" value= "./build" />
+
+  <!-- classpath -->
+  <path id="classpath">
+    <pathelement location="${classes.dir}" />
+  </path>
+
+  <!-- init rule creates build directory -->
+  <target name="init">
+    <!-- Create the time stamp -->
+    <tstamp/>
+    <!-- Create the build directory structure used by compile -->
+    <mkdir dir="${classes.dir}"/>
+    <mkdir dir="${dist}"/>
+  </target>
+
+  <!-- creates a jar file containing the client -->
+  <target name="jar_rbe" depends="init, compile_rbe">
+     <jar destfile="${dist}/tpcw_rbe.jar">
+	<fileset dir="${classes.dir}"
+		 includes="rbe/**/*.class"/>
+    </jar>
+  </target>
+
+  <target name="dist" depends="init, compile_all, jar_rbe">
+  </target>
+
+  <target name="compile_all" depends="init, compile_rbe">
+  </target>
+
+  <!-- Compile the client emulator -->
+  <target name="compile_rbe" depends="init">
+    <javac srcdir="${src}"
+	   includes="rbe/**/*.java"
+	   destdir="${classes.dir}"
+	   classpathref="classpath"
+	   source="1.5"
+	   target="1.5"
+	   fork="yes"
+	   debug="on"
+	   />
+  </target>
+
+  <target name="clean">
+    <!-- Delete the ${classes.dir} and ${dist} directory trees -->
+    <delete dir="${classes.dir}"/>
+    <delete dir="${dist}"/>
+    <delete>
+	<fileset dir="${src}" defaultexcludes="no" includes="**/*.class,**/*~"/>
+    </delete>
+  </target>
+
+  <target name="fresh_dist" depends="clean, dist" />
+</project>
