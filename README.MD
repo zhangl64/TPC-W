@@ -1,4 +1,5 @@
 Lei Zhang
+
 zhangl64@mcmaster.ca
 
 1. Please read LICENSE file for the copyright. 
@@ -26,9 +27,14 @@ zhangl64@mcmaster.ca
 If you use this TPC-W as part of your academic publication, we request that you cite our work as follows:
 
 @article{zhang2018apem,
+
 	title={{APEM} --- Approximate Performance Evaluation for Multi-Core Computers},
 	author={Zhang, Lei and Down, Douglas G},
+	
 	journal={Journal of Circuits, Systems and Computers},
+	
 	year={2018},
+	
 	publisher={World Scientific}
+	
 }
