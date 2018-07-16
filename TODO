@@ -1,0 +1,13 @@
+TPC-W pure open queueing network to-do list:
+
+1. When lambda is large, EB.java - run() method prints a lot of messages, because:
+	if(html == null ) { log("Restarting user session");}
+	Trace back because getHTML() method returns null. Need more concern to identify the reason behind it.
+
+2. When running time is long, and lambda is large, some of EBs can not suicide (still alive) at the end.
+
+3. User input parameter of Think Time should be removed; use lambda instead.
+
+4. In RBE.java - negExp() method, the values of max and IMax need to be verified.
+
+5. The number of EBs is hard-coded, shouldn't be one of user inputs, infinity?
