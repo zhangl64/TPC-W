@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ==================================================================== -->
+<!--  Datasource config for MySQL using 3.1 driver                        -->
+<!--  for JBoss-3.2.7                                                     -->
+<!-- ==================================================================== -->
+
+<datasources>
+  <local-tx-datasource>
+    <jndi-name>TPCWDS</jndi-name>
+    <connection-url>jdbc:mysql://localhost:3306/tpcw?jdbcCompliantTruncation=false&amp;useServerPrepStmts=false&amp;cachePrepStmts=true</connection-url>
+    <driver-class>com.mysql.jdbc.Driver</driver-class>
+
+    <user-name>root</user-name>
+    <password>huntzhang</password>
+
+    <transaction-isolation>TRANSACTION_READ_COMMITTED</transaction-isolation>
+    <max-pool-size>1000</max-pool-size>
+    <blocking-timeout-millis>30000</blocking-timeout-millis>
+    <check-valid-connection-sql>SELECT 1</check-valid-connection-sql>
+  </local-tx-datasource>
+</datasources>

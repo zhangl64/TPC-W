@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<project default="ear">
+
+  <target name="init">
+
+   <!-- The root directory of the workspace -->
+    <property name="tpcw.home" value="."/>
+
+    <!-- The destination directory for the build -->
+    <property name="tpcw.build" value="${tpcw.home}/build"/>
+    <property name="tpcw.buildjardir" value="${tpcw.build}/ejbjar"/>
+    <property name="tpcw.src" value="${tpcw.home}/src"/>
+
+    <!-- The destination directory for all the compiled classes. -->
+    <property name="tpcw.classbindir" value="${tpcw.build}/classes"/>
+    <property name="tpcw.srcdocroot" value="${tpcw.home}/docroot"/>
+
+    <!-- The classpath used for building the workspace. -->
+    <property name="tpcw.classpath" value="${tpcw.classbindir}"/>
+
+    <property name="tpcw.ejbjar" value="${tpcw.build}/tpcwEjb.jar"/>
+    <property name="tpcw.war" value="${tpcw.build}/tpcw.war"/>
+    <property name="tpcw.ear" value="${tpcw.build}/tpcw.ear"/>
+    
+    <!-- WGEN -->
+    <property name="wgen.dir" value="${tpcw.home}/wgen/wgen_v1_exe"/>
+    <property name="wgen.title.file" value="${wgen.dir}/I_TITLE.TXT"/>
+    <property name="wgen.author.file" value="${wgen.dir}/A_LNAME.TXT"/>
+    
+  </target>
+
+  <target name="compile_classes" depends="init">
+    <mkdir dir="${tpcw.classbindir}"/>
+    <javac debug="true"
+    	   srcdir="${tpcw.src}"
+           destdir="${tpcw.classbindir}"
+           classpath="${tpcw.classpath}"
+           includes="edu/nyu/pdsg/tpcw/ejb/**,edu/nyu/pdsg/tpcw/util/**,edu/nyu/pdsg/tpcw/populate/**,edu/nyu/pdsg/tpcw/web/*Servlet.java"/>
+           
+    <copy file="${wgen.title.file}" todir="${tpcw.classbindir}"/>
+    <copy file="${wgen.author.file}" todir="${tpcw.classbindir}"/>
+  </target>
+
+  <target name="war" depends="compile_classes">
+    <copy todir="${tpcw.srcdocroot}/WEB-INF/classes">
+    	<fileset dir="${tpcw.classbindir}" 
+    	includes="edu/nyu/pdsg/tpcw/web/**,edu/nyu/pdsg/tpcw/util/**,edu/nyu/pdsg/tpcw/ejb/**"
+    	excludes="**/*Bean.class"/>
+    </copy>
+    <delete file="${tpcw.war}"/>
+    <jar jarfile="${tpcw.war}" basedir="${tpcw.srcdocroot}"/>
+    <delete dir="${tpcw.srcdocroot}/WEB-INF/classes"/>
+  </target>
+
+  <target name="ejbjar" depends="compile_classes">
+    <copy todir="${tpcw.buildjardir}">
+    	<fileset dir="${tpcw.classbindir}" includes="edu/nyu/pdsg/tpcw/ejb/**,edu/nyu/pdsg/tpcw/util/**"/>
+    </copy>
+    <mkdir dir="${tpcw.buildjardir}/META-INF"/>
+    <copy todir="${tpcw.buildjardir}/META-INF">
+    	<fileset dir="${tpcw.home}/META-INF"/>
+    </copy>
+    <delete file="${tpcw.ejbjar}"/>
+    <jar jarfile="${tpcw.ejbjar}" basedir="${tpcw.buildjardir}"/>
+    <delete dir="${tpcw.buildjardir}"/>
+  </target>
+
+  <target name="ear" depends="ejbjar,war">
+    <mkdir dir="${tpcw.buildjardir}/META-INF"/>
+    <copy file="application.xml" tofile="${tpcw.buildjardir}/META-INF/application.xml" />
+    <copy file="${tpcw.ejbjar}" tofile="${tpcw.buildjardir}/tpcwEjb.jar" />
+    <copy file="${tpcw.war}" tofile="${tpcw.buildjardir}/tpcw.war" />
+    <delete file="${tpcw.ear}"/>
+    <jar jarfile="${tpcw.ear}" basedir="${tpcw.buildjardir}" />
+    <delete dir="${tpcw.buildjardir}"/>
+  </target>
+  
+  <target name="undeploy" depends="init">
+    <property name="jboss.deploy" value="${jboss.dist}/server/default/deploy/"/>
+    <property name="tpcw.earjboss" value="${jboss.deploy}/tpcw.ear"/>
+    <delete file="${tpcw.earjboss}"/>
+  </target>
+
+  <target name="deploy" depends="init">
+    <property name="jboss.deploy" value="${jboss.dist}/server/default/deploy/"/>
+    <property name="tpcw.earjboss" value="${jboss.deploy}/tpcw.ear"/>
+    <copy file="${tpcw.ear}" tofile="${tpcw.earjboss}"/>    
+  </target>
+
+  <target name="clean" depends="init">
+    <delete dir="${tpcw.build}" />
+  </target>
+
+  <target name="all" depends="compile_classes,war,ejbjar,ear" />
+  <target name="waronly" depends="compile_classes,war" />
+
+</project>

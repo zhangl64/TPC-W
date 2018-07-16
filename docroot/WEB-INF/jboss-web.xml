@@ -1,0 +1,14 @@
+<jboss-web>
+  <ejb-ref>
+    <ejb-ref-name>ejb/ShoppingCart</ejb-ref-name>
+    <jndi-name>TheShoppingCart</jndi-name>
+  </ejb-ref>
+  <ejb-ref>
+    <ejb-ref-name>ejb/Catalog</ejb-ref-name>
+    <jndi-name>TheCatalog</jndi-name>
+  </ejb-ref>
+  <ejb-ref>
+    <ejb-ref-name>ejb/AdminPortal</ejb-ref-name>
+    <jndi-name>TheAdminPortal</jndi-name>
+  </ejb-ref>
+</jboss-web>

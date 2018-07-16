@@ -1,0 +1,709 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE ejb-jar PUBLIC
+      "-//Sun Microsystems, Inc.//DTD Enterprise JavaBeans 2.0//EN"
+      "http://java.sun.com/dtd/ejb-jar_2_0.dtd">
+
+<ejb-jar>
+	<enterprise-beans>
+
+      <entity>
+         <ejb-name>IdManager</ejb-name>
+
+         <home>edu.nyu.pdsg.tpcw.ejb.idmanager.IdManagerHome</home>
+         <remote>edu.nyu.pdsg.tpcw.ejb.idmanager.IdManager</remote>
+         <ejb-class>edu.nyu.pdsg.tpcw.ejb.idmanager.IdManagerBean</ejb-class>
+
+         <persistence-type>Container</persistence-type>
+         <prim-key-class>java.lang.Integer</prim-key-class>
+         <reentrant>False</reentrant>
+         <cmp-version>2.x</cmp-version>
+         <abstract-schema-name>ids</abstract-schema-name>
+
+         <cmp-field><field-name>id</field-name></cmp-field>
+         <cmp-field><field-name>addressId</field-name></cmp-field>
+         <cmp-field><field-name>customerId</field-name></cmp-field>
+         <cmp-field><field-name>orderId</field-name></cmp-field>
+
+         <primkey-field>id</primkey-field>
+      </entity>
+
+      <entity>
+         <ejb-name>Address</ejb-name>
+
+         <home>edu.nyu.pdsg.tpcw.ejb.address.AddressHome</home>
+         <remote>edu.nyu.pdsg.tpcw.ejb.address.Address</remote>
+         <ejb-class>edu.nyu.pdsg.tpcw.ejb.address.AddressBean</ejb-class>
+
+         <persistence-type>Container</persistence-type>
+         <prim-key-class>java.lang.Integer</prim-key-class>
+         <reentrant>False</reentrant>
+         <cmp-version>2.x</cmp-version>
+         <abstract-schema-name>address</abstract-schema-name>
+
+	     <ejb-ref>
+         	<ejb-ref-name>ejb/IdManager</ejb-ref-name>
+         	<ejb-ref-type>Entity</ejb-ref-type>
+         	<home>edu.nyu.pdsg.tpcw.ejb.idmanager.IdManagerHome</home>
+         	<remote>edu.nyu.pdsg.tpcw.ejb.idmanager.IdManager</remote>
+         </ejb-ref>
+
+         <cmp-field><field-name>ADDR_ID</field-name></cmp-field>
+         <cmp-field><field-name>ADDR_STREET1</field-name></cmp-field>
+         <cmp-field><field-name>ADDR_STREET2</field-name></cmp-field>
+         <cmp-field><field-name>ADDR_CITY</field-name></cmp-field>
+         <cmp-field><field-name>ADDR_STATE</field-name></cmp-field>
+         <cmp-field><field-name>ADDR_ZIP</field-name></cmp-field>
+         <cmp-field><field-name>ADDR_CO_ID</field-name></cmp-field>
+
+         <primkey-field>ADDR_ID</primkey-field>
+      </entity>
+
+      <entity>
+         <ejb-name>Country</ejb-name>
+
+         <home>edu.nyu.pdsg.tpcw.ejb.country.CountryHome</home>
+         <remote>edu.nyu.pdsg.tpcw.ejb.country.Country</remote>
+         <ejb-class>edu.nyu.pdsg.tpcw.ejb.country.CountryBean</ejb-class>
+
+         <persistence-type>Container</persistence-type>
+         <prim-key-class>java.lang.Integer</prim-key-class>
+         <reentrant>False</reentrant>
+         <cmp-version>2.x</cmp-version>
+         <abstract-schema-name>country</abstract-schema-name>
+
+         <cmp-field><field-name>CO_ID</field-name></cmp-field>
+         <cmp-field><field-name>CO_NAME</field-name></cmp-field>
+         <cmp-field><field-name>CO_EXCHANGE</field-name></cmp-field>
+         <cmp-field><field-name>CO_CURRENCY</field-name></cmp-field>
+
+         <primkey-field>CO_ID</primkey-field>
+      </entity>
+
+      <entity>
+         <ejb-name>Author</ejb-name>
+
+         <home>edu.nyu.pdsg.tpcw.ejb.author.AuthorHome</home>
+         <remote>edu.nyu.pdsg.tpcw.ejb.author.Author</remote>
+         <ejb-class>edu.nyu.pdsg.tpcw.ejb.author.AuthorBean</ejb-class>
+
+         <persistence-type>Container</persistence-type>
+         <prim-key-class>java.lang.Integer</prim-key-class>
+         <reentrant>False</reentrant>
+         <cmp-version>2.x</cmp-version>
+         <abstract-schema-name>author</abstract-schema-name>
+
+         <cmp-field><field-name>A_ID</field-name></cmp-field>
+         <cmp-field><field-name>A_FNAME</field-name></cmp-field>
+         <cmp-field><field-name>A_LNAME</field-name></cmp-field>
+         <cmp-field><field-name>A_MNAME</field-name></cmp-field>
+         <cmp-field><field-name>A_DOB</field-name></cmp-field>
+         <cmp-field><field-name>A_BIO</field-name></cmp-field>
+
+         <primkey-field>A_ID</primkey-field>
+      </entity>
+
+      <entity>
+         <ejb-name>Item</ejb-name>
+
+         <home>edu.nyu.pdsg.tpcw.ejb.item.ItemHome</home>
+         <remote>edu.nyu.pdsg.tpcw.ejb.item.Item</remote>
+         <ejb-class>edu.nyu.pdsg.tpcw.ejb.item.ItemBean</ejb-class>
+
+         <persistence-type>Container</persistence-type>
+         <prim-key-class>java.lang.Integer</prim-key-class>
+         <reentrant>False</reentrant>
+         <cmp-version>2.x</cmp-version>
+         <abstract-schema-name>item</abstract-schema-name>
+
+         <cmp-field><field-name>I_ID</field-name></cmp-field>
+         <cmp-field><field-name>I_TITLE</field-name></cmp-field>
+         <cmp-field><field-name>I_A_ID</field-name></cmp-field>
+         <cmp-field><field-name>I_PUB_DATE</field-name></cmp-field>
+         <cmp-field><field-name>I_PUBLISHER</field-name></cmp-field>
+         <cmp-field><field-name>I_SUBJECT</field-name></cmp-field>
+         <cmp-field><field-name>I_DESC</field-name></cmp-field>
+         <cmp-field><field-name>I_RELATED1</field-name></cmp-field>
+         <cmp-field><field-name>I_RELATED2</field-name></cmp-field>
+         <cmp-field><field-name>I_RELATED3</field-name></cmp-field>
+         <cmp-field><field-name>I_RELATED4</field-name></cmp-field>
+         <cmp-field><field-name>I_RELATED5</field-name></cmp-field>
+         <cmp-field><field-name>I_THUMBNAIL</field-name></cmp-field>
+         <cmp-field><field-name>I_IMAGE</field-name></cmp-field>
+         <cmp-field><field-name>I_SRP</field-name></cmp-field>
+         <cmp-field><field-name>I_COST</field-name></cmp-field>
+         <cmp-field><field-name>I_AVAIL</field-name></cmp-field>
+         <cmp-field><field-name>I_STOCK</field-name></cmp-field>
+         <cmp-field><field-name>I_ISBN</field-name></cmp-field>
+         <cmp-field><field-name>I_PAGE</field-name></cmp-field>
+         <cmp-field><field-name>I_BACKING</field-name></cmp-field>
+         <cmp-field><field-name>I_DIMENSIONS</field-name></cmp-field>
+
+         <primkey-field>I_ID</primkey-field>
+
+         <query>
+         	<query-method>
+            	<method-name>findByTitle</method-name>
+            	<method-params>
+               		<method-param>java.lang.String</method-param>
+               		<method-param>int</method-param>
+               	</method-params>
+            </query-method>
+            <ejb-ql/>
+         </query>
+         
+         <query>
+         	<query-method>
+            	<method-name>findBySubject</method-name>
+            	<method-params>
+               		<method-param>java.lang.String</method-param>
+               		<method-param>int</method-param>
+               	</method-params>
+            </query-method>
+            <ejb-ql/>
+         </query>
+
+         <query>
+         	<query-method>
+            	<method-name>findNewBySubject</method-name>
+            	<method-params>
+               		<method-param>java.lang.String</method-param>
+               		<method-param>int</method-param>
+               	</method-params>
+            </query-method>
+            <ejb-ql/>
+         </query>
+      </entity>
+
+      <entity>
+         <ejb-name>Customer</ejb-name>
+
+         <home>edu.nyu.pdsg.tpcw.ejb.customer.CustomerHome</home>
+         <remote>edu.nyu.pdsg.tpcw.ejb.customer.Customer</remote>
+         <ejb-class>edu.nyu.pdsg.tpcw.ejb.customer.CustomerBean</ejb-class>
+
+         <persistence-type>Container</persistence-type>
+         <prim-key-class>java.lang.Integer</prim-key-class>
+         <reentrant>False</reentrant>
+         <cmp-version>2.x</cmp-version>
+         <abstract-schema-name>customer</abstract-schema-name>
+
+	     <ejb-ref>
+         	<ejb-ref-name>ejb/IdManager</ejb-ref-name>
+         	<ejb-ref-type>Entity</ejb-ref-type>
+         	<home>edu.nyu.pdsg.tpcw.ejb.idmanager.IdManagerHome</home>
+         	<remote>edu.nyu.pdsg.tpcw.ejb.idmanager.IdManager</remote>
+         </ejb-ref>
+
+         <cmp-field><field-name>C_ID</field-name></cmp-field>
+         <cmp-field><field-name>C_UNAME</field-name></cmp-field>
+         <cmp-field><field-name>C_PASSWD</field-name></cmp-field>
+         <cmp-field><field-name>C_FNAME</field-name></cmp-field>
+         <cmp-field><field-name>C_LNAME</field-name></cmp-field>
+         <cmp-field><field-name>C_ADDR_ID</field-name></cmp-field>
+         <cmp-field><field-name>C_PHONE</field-name></cmp-field>
+         <cmp-field><field-name>C_EMAIL</field-name></cmp-field>
+         <cmp-field><field-name>C_SINCE</field-name></cmp-field>
+         <cmp-field><field-name>C_LAST_VISIT</field-name></cmp-field>
+         <cmp-field><field-name>C_LOGIN</field-name></cmp-field>
+         <cmp-field><field-name>C_EXPIRATION</field-name></cmp-field>
+         <cmp-field><field-name>C_DISCOUNT</field-name></cmp-field>
+         <cmp-field><field-name>C_BALANCE</field-name></cmp-field>
+         <cmp-field><field-name>C_YTD_PMT</field-name></cmp-field>
+         <cmp-field><field-name>C_BIRTHDATE</field-name></cmp-field>
+         <cmp-field><field-name>C_DATA</field-name></cmp-field>
+
+         <primkey-field>C_ID</primkey-field>
+
+         <query>
+         	<query-method>
+            	<method-name>findByC_UNAME</method-name>
+            	<method-params>
+               		<method-param>java.lang.String</method-param>
+               	</method-params>
+            </query-method>
+            <ejb-ql><![CDATA[
+               SELECT OBJECT(C)
+               FROM customer C
+               WHERE C.C_UNAME = ?1
+            ]]></ejb-ql>
+         </query>
+      </entity>
+
+      <entity>
+         <ejb-name>Cc_xact</ejb-name>
+
+         <home>edu.nyu.pdsg.tpcw.ejb.xact.Cc_xactHome</home>
+         <remote>edu.nyu.pdsg.tpcw.ejb.xact.Cc_xact</remote>
+         <ejb-class>edu.nyu.pdsg.tpcw.ejb.xact.Cc_xactBean</ejb-class>
+
+         <persistence-type>Container</persistence-type>
+         <prim-key-class>java.lang.Integer</prim-key-class>
+         <reentrant>False</reentrant>
+         <cmp-version>2.x</cmp-version>
+         <abstract-schema-name>cc_xact</abstract-schema-name>
+
+         <cmp-field><field-name>CX_O_ID</field-name></cmp-field>
+         <cmp-field><field-name>CX_TYPE</field-name></cmp-field>
+         <cmp-field><field-name>CX_NUM</field-name></cmp-field>
+         <cmp-field><field-name>CX_NAME</field-name></cmp-field>
+         <cmp-field><field-name>CX_EXPIRE</field-name></cmp-field>
+         <cmp-field><field-name>CX_AUTH_ID</field-name></cmp-field>
+         <cmp-field><field-name>CX_XACT_AMT</field-name></cmp-field>
+         <cmp-field><field-name>CX_XACT_DATE</field-name></cmp-field>
+         <cmp-field><field-name>CX_CO_ID</field-name></cmp-field>
+
+         <primkey-field>CX_O_ID</primkey-field>
+      </entity>
+
+      <entity>
+         <ejb-name>Order</ejb-name>
+
+         <home>edu.nyu.pdsg.tpcw.ejb.order.OrderHome</home>
+         <remote>edu.nyu.pdsg.tpcw.ejb.order.Order</remote>
+         <ejb-class>edu.nyu.pdsg.tpcw.ejb.order.OrderBean</ejb-class>
+
+         <persistence-type>Container</persistence-type>
+         <prim-key-class>java.lang.Integer</prim-key-class>
+         <reentrant>False</reentrant>
+         <cmp-version>2.x</cmp-version>
+         <abstract-schema-name>order</abstract-schema-name>
+
+	     <ejb-ref>
+         	<ejb-ref-name>ejb/IdManager</ejb-ref-name>
+         	<ejb-ref-type>Entity</ejb-ref-type>
+         	<home>edu.nyu.pdsg.tpcw.ejb.idmanager.IdManagerHome</home>
+         	<remote>edu.nyu.pdsg.tpcw.ejb.idmanager.IdManager</remote>
+         </ejb-ref>
+
+         <cmp-field><field-name>O_ID</field-name></cmp-field>
+         <cmp-field><field-name>O_C_ID</field-name></cmp-field>
+         <cmp-field><field-name>O_DATE</field-name></cmp-field>
+         <cmp-field><field-name>O_SUB_TOTAL</field-name></cmp-field>
+         <cmp-field><field-name>O_TAX</field-name></cmp-field>
+         <cmp-field><field-name>O_TOTAL</field-name></cmp-field>
+         <cmp-field><field-name>O_SHIP_TYPE</field-name></cmp-field>
+         <cmp-field><field-name>O_SHIP_DATE</field-name></cmp-field>
+         <cmp-field><field-name>O_BILL_ADDR_ID</field-name></cmp-field>
+         <cmp-field><field-name>O_SHIP_ADDR_ID</field-name></cmp-field>
+         <cmp-field><field-name>O_STATUS</field-name></cmp-field>
+
+         <primkey-field>O_ID</primkey-field>
+      </entity>
+
+      <entity>
+         <ejb-name>OrderLine</ejb-name>
+
+         <home>edu.nyu.pdsg.tpcw.ejb.order.OrderLineHome</home>
+         <remote>edu.nyu.pdsg.tpcw.ejb.order.OrderLine</remote>
+         <ejb-class>edu.nyu.pdsg.tpcw.ejb.order.OrderLineBean</ejb-class>
+
+         <persistence-type>Container</persistence-type>
+         <prim-key-class>edu.nyu.pdsg.tpcw.ejb.order.OrderLinePK</prim-key-class>
+         <reentrant>False</reentrant>
+         <cmp-version>2.x</cmp-version>
+         <abstract-schema-name>order_line</abstract-schema-name>
+
+         <cmp-field><field-name>OL_ID</field-name></cmp-field>
+         <cmp-field><field-name>OL_O_ID</field-name></cmp-field>
+         <cmp-field><field-name>OL_I_ID</field-name></cmp-field>
+         <cmp-field><field-name>OL_QTY</field-name></cmp-field>
+         <cmp-field><field-name>OL_DISCOUNT</field-name></cmp-field>
+         <cmp-field><field-name>OL_COMMENTS</field-name></cmp-field>
+
+         <query>
+         	<query-method>
+            	<method-name>findByOrderId</method-name>
+            	<method-params>
+               		<method-param>java.lang.Integer</method-param>
+               	</method-params>
+            </query-method>
+            <ejb-ql><![CDATA[
+               SELECT OBJECT(OL)
+               FROM order_line OL
+               WHERE OL.OL_O_ID = ?1
+            ]]></ejb-ql>
+         </query>
+      </entity>
+
+
+
+
+      <session>
+         <ejb-name>Catalog</ejb-name>
+         <home>edu.nyu.pdsg.tpcw.ejb.catalog.CatalogHome</home>
+         <remote>edu.nyu.pdsg.tpcw.ejb.catalog.Catalog</remote>
+         <ejb-class>edu.nyu.pdsg.tpcw.ejb.catalog.CatalogBean</ejb-class>
+         <session-type>Stateless</session-type>
+         <transaction-type>Container</transaction-type>
+
+	     <ejb-ref>
+         	<ejb-ref-name>ejb/Item</ejb-ref-name>
+         	<ejb-ref-type>Entity</ejb-ref-type>
+         <home>edu.nyu.pdsg.tpcw.ejb.item.ItemHome</home>
+         <remote>edu.nyu.pdsg.tpcw.ejb.item.Item</remote>
+         </ejb-ref>
+
+	     <ejb-ref>
+         	<ejb-ref-name>ejb/Author</ejb-ref-name>
+         	<ejb-ref-type>Entity</ejb-ref-type>
+         <home>edu.nyu.pdsg.tpcw.ejb.author.AuthorHome</home>
+         <remote>edu.nyu.pdsg.tpcw.ejb.author.Author</remote>
+         </ejb-ref>
+
+	     <resource-ref>
+         	<res-ref-name>jdbc/TPCWDS</res-ref-name>
+        	<res-type>javax.sql.DataSource</res-type>
+         	<res-auth>Container</res-auth>
+      	</resource-ref>
+      </session>
+
+      <session>
+         <ejb-name>ShoppingCart</ejb-name>
+         <home>edu.nyu.pdsg.tpcw.ejb.cart.ShoppingCartHome</home>
+         <remote>edu.nyu.pdsg.tpcw.ejb.cart.ShoppingCart</remote>
+         <ejb-class>edu.nyu.pdsg.tpcw.ejb.cart.ShoppingCartBean</ejb-class>
+         <session-type>Stateful</session-type>
+         <transaction-type>Container</transaction-type>
+
+	     <ejb-ref>
+         	<ejb-ref-name>ejb/Catalog</ejb-ref-name>
+         	<ejb-ref-type>Session</ejb-ref-type>
+         <home>edu.nyu.pdsg.tpcw.ejb.catalog.CatalogHome</home>
+         <remote>edu.nyu.pdsg.tpcw.ejb.catalog.Catalog</remote>
+         </ejb-ref>
+
+         <ejb-ref>
+         	<ejb-ref-name>ejb/AdminPortal</ejb-ref-name>
+         	<ejb-ref-type>Session</ejb-ref-type>
+         	<home>edu.nyu.pdsg.tpcw.ejb.adminportal.AdminPortalHome</home>
+         	<remote>edu.nyu.pdsg.tpcw.ejb.adminportal.AdminPortal</remote>
+         </ejb-ref>
+         
+      </session>
+
+      <session>
+         <ejb-name>AdminPortal</ejb-name>
+         <home>edu.nyu.pdsg.tpcw.ejb.adminportal.AdminPortalHome</home>
+         <remote>edu.nyu.pdsg.tpcw.ejb.adminportal.AdminPortal</remote>
+         <ejb-class>edu.nyu.pdsg.tpcw.ejb.adminportal.AdminPortalBean</ejb-class>
+         <session-type>Stateless</session-type>
+         <transaction-type>Container</transaction-type>
+
+	     <ejb-ref>
+         	<ejb-ref-name>ejb/Customer</ejb-ref-name>
+         	<ejb-ref-type>Entity</ejb-ref-type>
+	         <home>edu.nyu.pdsg.tpcw.ejb.customer.CustomerHome</home>
+    	     <remote>edu.nyu.pdsg.tpcw.ejb.customer.Customer</remote>
+         </ejb-ref>
+
+	     <ejb-ref>
+         	<ejb-ref-name>ejb/Address</ejb-ref-name>
+         	<ejb-ref-type>Entity</ejb-ref-type>
+        	 <home>edu.nyu.pdsg.tpcw.ejb.address.AddressHome</home>
+         	<remote>edu.nyu.pdsg.tpcw.ejb.address.Address</remote>
+         </ejb-ref>
+
+	     <ejb-ref>
+         	<ejb-ref-name>ejb/Country</ejb-ref-name>
+         	<ejb-ref-type>Entity</ejb-ref-type>
+         	<home>edu.nyu.pdsg.tpcw.ejb.country.CountryHome</home>
+         	<remote>edu.nyu.pdsg.tpcw.ejb.country.Country</remote>
+         </ejb-ref>
+
+	     <ejb-ref>
+         	<ejb-ref-name>ejb/Order</ejb-ref-name>
+         	<ejb-ref-type>Entity</ejb-ref-type>
+         	<home>edu.nyu.pdsg.tpcw.ejb.order.OrderHome</home>
+         	<remote>edu.nyu.pdsg.tpcw.ejb.order.Order</remote>
+         </ejb-ref>
+
+	     <ejb-ref>
+         	<ejb-ref-name>ejb/OrderLine</ejb-ref-name>
+         	<ejb-ref-type>Entity</ejb-ref-type>
+         	<home>edu.nyu.pdsg.tpcw.ejb.order.OrderLineHome</home>
+         	<remote>edu.nyu.pdsg.tpcw.ejb.order.OrderLine</remote>
+         </ejb-ref>
+         
+	     <ejb-ref>
+         	<ejb-ref-name>ejb/Cc_xact</ejb-ref-name>
+         	<ejb-ref-type>Entity</ejb-ref-type>
+         	<home>edu.nyu.pdsg.tpcw.ejb.xact.Cc_xactHome</home>
+         	<remote>edu.nyu.pdsg.tpcw.ejb.xact.Cc_xact</remote>
+         </ejb-ref>
+
+	     <ejb-ref>
+         	<ejb-ref-name>ejb/Item</ejb-ref-name>
+         	<ejb-ref-type>Entity</ejb-ref-type>
+         	<home>edu.nyu.pdsg.tpcw.ejb.item.ItemHome</home>
+         	<remote>edu.nyu.pdsg.tpcw.ejb.item.Item</remote>
+         </ejb-ref>
+
+	     <ejb-ref>
+         	<ejb-ref-name>ejb/Author</ejb-ref-name>
+         	<ejb-ref-type>Entity</ejb-ref-type>
+         	<home>edu.nyu.pdsg.tpcw.ejb.author.AuthorHome</home>
+         	<remote>edu.nyu.pdsg.tpcw.ejb.author.Author</remote>
+         </ejb-ref>
+
+	     <resource-ref>
+         	<res-ref-name>jdbc/TPCWDS</res-ref-name>
+        	<res-type>javax.sql.DataSource</res-type>
+         	<res-auth>Container</res-auth>
+      	</resource-ref>
+      </session>
+    </enterprise-beans>
+
+
+    <assembly-descriptor>
+
+	    <container-transaction>
+      		<method>
+        		<ejb-name>IdManager</ejb-name>
+        		<method-intf>Remote</method-intf>
+        		<method-name>*</method-name>
+      		</method>
+      		<trans-attribute>Required</trans-attribute>
+    	</container-transaction>
+
+
+	    <container-transaction>
+      		<method>
+        		<ejb-name>Address</ejb-name>
+        		<method-intf>Home</method-intf>
+        		<method-name>*</method-name>
+      		</method>
+      		<trans-attribute>NotSupported</trans-attribute>
+    	</container-transaction>
+	    <container-transaction>
+      		<method>
+        		<ejb-name>Address</ejb-name>
+        		<method-intf>Remote</method-intf>
+        		<method-name>*</method-name>
+      		</method>
+      		<trans-attribute>NotSupported</trans-attribute>
+    	</container-transaction>
+
+
+	    <container-transaction>
+      		<method>
+        		<ejb-name>Country</ejb-name>
+        		<method-intf>Home</method-intf>
+        		<method-name>*</method-name>
+      		</method>
+      		<trans-attribute>NotSupported</trans-attribute>
+    	</container-transaction>
+	    <container-transaction>
+      		<method>
+        		<ejb-name>Country</ejb-name>
+        		<method-intf>Remote</method-intf>
+        		<method-name>*</method-name>
+      		</method>
+      		<trans-attribute>NotSupported</trans-attribute>
+    	</container-transaction>
+
+
+	    <container-transaction>
+      		<method>
+        		<ejb-name>Author</ejb-name>
+        		<method-intf>Home</method-intf>
+        		<method-name>*</method-name>
+      		</method>
+      		<trans-attribute>NotSupported</trans-attribute>
+    	</container-transaction>
+	    <container-transaction>
+      		<method>
+        		<ejb-name>Author</ejb-name>
+        		<method-intf>Remote</method-intf>
+        		<method-name>*</method-name>
+      		</method>
+      		<trans-attribute>NotSupported</trans-attribute>
+    	</container-transaction>
+
+
+	    <container-transaction>
+      		<method>
+        		<ejb-name>Item</ejb-name>
+        		<method-intf>Home</method-intf>
+        		<method-name>*</method-name>
+      		</method>
+      		<trans-attribute>NotSupported</trans-attribute>
+    	</container-transaction>
+	    <container-transaction>
+      		<method>
+        		<ejb-name>Item</ejb-name>
+        		<method-intf>Remote</method-intf>
+        		<method-name>*</method-name>
+      		</method>
+      		<trans-attribute>Supports</trans-attribute>
+    	</container-transaction>
+
+
+	    <container-transaction>
+      		<method>
+        		<ejb-name>Customer</ejb-name>
+        		<method-intf>Home</method-intf>
+        		<method-name>*</method-name>
+      		</method>
+      		<trans-attribute>NotSupported</trans-attribute>
+    	</container-transaction>
+	    <container-transaction>
+      		<method>
+        		<ejb-name>Customer</ejb-name>
+        		<method-intf>Home</method-intf>
+        		<method-name>creat*</method-name>
+      		</method>
+      		<trans-attribute>Required</trans-attribute>
+    	</container-transaction>
+	    <container-transaction>
+      		<method>
+        		<ejb-name>Customer</ejb-name>
+        		<method-intf>Remote</method-intf>
+        		<method-name>*</method-name>
+      		</method>
+      		<trans-attribute>Supports</trans-attribute>
+    	</container-transaction>
+
+
+	    <container-transaction>
+      		<method>
+        		<ejb-name>Cc_xact</ejb-name>
+        		<method-intf>Home</method-intf>
+        		<method-name>*</method-name>
+      		</method>
+      		<trans-attribute>NotSupported</trans-attribute>
+    	</container-transaction>
+	    <container-transaction>
+      		<method>
+        		<ejb-name>Cc_xact</ejb-name>
+        		<method-intf>Home</method-intf>
+        		<method-name>creat*</method-name>
+      		</method>
+      		<trans-attribute>Required</trans-attribute>
+    	</container-transaction>
+	    <container-transaction>
+      		<method>
+        		<ejb-name>Cc_xact</ejb-name>
+        		<method-intf>Remote</method-intf>
+        		<method-name>*</method-name>
+      		</method>
+      		<trans-attribute>Required</trans-attribute>
+    	</container-transaction>
+
+
+	    <container-transaction>
+      		<method>
+        		<ejb-name>Order</ejb-name>
+        		<method-intf>Home</method-intf>
+        		<method-name>*</method-name>
+      		</method>
+      		<trans-attribute>NotSupported</trans-attribute>
+    	</container-transaction>
+	    <container-transaction>
+      		<method>
+        		<ejb-name>Order</ejb-name>
+        		<method-intf>Home</method-intf>
+        		<method-name>creat*</method-name>
+      		</method>
+      		<trans-attribute>Required</trans-attribute>
+    	</container-transaction>
+	    <container-transaction>
+      		<method>
+        		<ejb-name>Order</ejb-name>
+        		<method-intf>Remote</method-intf>
+        		<method-name>*</method-name>
+      		</method>
+      		<trans-attribute>NotSupported</trans-attribute>
+    	</container-transaction>
+
+
+	    <container-transaction>
+      		<method>
+        		<ejb-name>OrderLine</ejb-name>
+        		<method-intf>Home</method-intf>
+        		<method-name>*</method-name>
+      		</method>
+      		<trans-attribute>NotSupported</trans-attribute>
+    	</container-transaction>
+	    <container-transaction>
+      		<method>
+        		<ejb-name>OrderLine</ejb-name>
+        		<method-intf>Home</method-intf>
+        		<method-name>creat*</method-name>
+      		</method>
+      		<trans-attribute>Required</trans-attribute>
+    	</container-transaction>
+	    <container-transaction>
+      		<method>
+        		<ejb-name>OrderLine</ejb-name>
+        		<method-intf>Remote</method-intf>
+        		<method-name>*</method-name>
+      		</method>
+      		<trans-attribute>NotSupported</trans-attribute>
+    	</container-transaction>
+
+
+	    <container-transaction>
+      		<method>
+        		<ejb-name>Catalog</ejb-name>
+        		<method-intf>Remote</method-intf>
+        		<method-name>*</method-name>
+      		</method>
+      		<trans-attribute>NotSupported</trans-attribute>
+    	</container-transaction>
+	    <container-transaction>
+      		<method>
+        		<ejb-name>Catalog</ejb-name>
+        		<method-intf>Remote</method-intf>
+        		<method-name>reduce*</method-name>
+      		</method>
+      		<trans-attribute>Required</trans-attribute>
+    	</container-transaction>
+
+
+	    <container-transaction>
+      		<method>
+        		<ejb-name>ShoppingCart</ejb-name>
+        		<method-intf>Remote</method-intf>
+        		<method-name>*</method-name>
+      		</method>
+      		<trans-attribute>NotSupported</trans-attribute>
+    	</container-transaction>
+	    <container-transaction>
+      		<method>
+        		<ejb-name>ShoppingCart</ejb-name>
+        		<method-intf>Remote</method-intf>
+        		<method-name>process*</method-name>
+      		</method>
+      		<trans-attribute>Required</trans-attribute>
+    	</container-transaction>
+
+
+	    <container-transaction>
+      		<method>
+        		<ejb-name>AdminPortal</ejb-name>
+        		<method-intf>Remote</method-intf>
+        		<method-name>*</method-name>
+      		</method>
+      		<trans-attribute>NotSupported</trans-attribute>
+    	</container-transaction>
+	    <container-transaction>
+      		<method>
+        		<ejb-name>AdminPortal</ejb-name>
+        		<method-intf>Remote</method-intf>
+        		<method-name>create*</method-name>
+      		</method>
+      		<trans-attribute>Required</trans-attribute>
+    	</container-transaction>
+	    <container-transaction>
+      		<method>
+        		<ejb-name>AdminPortal</ejb-name>
+        		<method-intf>Remote</method-intf>
+        		<method-name>update*</method-name>
+      		</method>
+      		<trans-attribute>Required</trans-attribute>
+    	</container-transaction>
+
+    </assembly-descriptor>
+
+</ejb-jar>

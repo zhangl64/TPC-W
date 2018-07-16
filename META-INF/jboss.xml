@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE jboss PUBLIC
+   "-//JBoss//DTD JBOSS 3.0//EN"
+   "http://www.jboss.org/j2ee/dtd/jboss_3_0.dtd">
+
+<jboss>
+  <enterprise-beans>
+
+    <entity>
+      <ejb-name>IdManager</ejb-name>
+      <jndi-name>TheIdManager</jndi-name>
+    </entity>
+
+    <entity>
+      <ejb-name>Address</ejb-name>
+      <jndi-name>TheAddress</jndi-name>
+      <ejb-ref>
+        <ejb-ref-name>ejb/IdManager</ejb-ref-name>
+        <jndi-name>TheIdManager</jndi-name>
+      </ejb-ref>
+    </entity>
+
+    <entity>
+      <ejb-name>Country</ejb-name>
+      <jndi-name>TheCountry</jndi-name>
+    </entity>
+
+    <entity>
+      <ejb-name>Author</ejb-name>
+      <jndi-name>TheAuthor</jndi-name>
+    </entity>
+
+    <entity>
+      <ejb-name>Item</ejb-name>
+      <jndi-name>TheItem</jndi-name>
+    </entity>
+
+    <entity>
+      <ejb-name>Customer</ejb-name>
+      <jndi-name>TheCustomer</jndi-name>
+      <ejb-ref>
+        <ejb-ref-name>ejb/IdManager</ejb-ref-name>
+        <jndi-name>TheIdManager</jndi-name>
+      </ejb-ref>
+    </entity>
+
+    <entity>
+      <ejb-name>Cc_xact</ejb-name>
+      <jndi-name>TheCc_xact</jndi-name>
+    </entity>
+
+    <entity>
+      <ejb-name>Order</ejb-name>
+      <jndi-name>TheOrder</jndi-name>
+      <ejb-ref>
+        <ejb-ref-name>ejb/IdManager</ejb-ref-name>
+        <jndi-name>TheIdManager</jndi-name>
+      </ejb-ref>
+    </entity>
+
+    <entity>
+      <ejb-name>OrderLine</ejb-name>
+      <jndi-name>TheOrderLine</jndi-name>
+    </entity>
+
+    <session>
+      <ejb-name>Catalog</ejb-name>
+      <jndi-name>TheCatalog</jndi-name>
+      <ejb-ref>
+        <ejb-ref-name>ejb/Item</ejb-ref-name>
+        <jndi-name>TheItem</jndi-name>
+      </ejb-ref>
+      <ejb-ref>
+        <ejb-ref-name>ejb/Author</ejb-ref-name>
+        <jndi-name>TheAuthor</jndi-name>
+      </ejb-ref>
+      <resource-ref>
+        <res-ref-name>jdbc/TPCWDS</res-ref-name>
+        <resource-name>TPCWDS</resource-name>
+      </resource-ref>
+    </session>
+
+    <session>
+      <ejb-name>ShoppingCart</ejb-name>
+      <jndi-name>TheShoppingCart</jndi-name>
+      <ejb-ref>
+        <ejb-ref-name>ejb/Catalog</ejb-ref-name>
+        <jndi-name>TheCatalog</jndi-name>
+      </ejb-ref>
+      <ejb-ref>
+        <ejb-ref-name>ejb/AdminPortal</ejb-ref-name>
+        <jndi-name>TheAdminPortal</jndi-name>
+      </ejb-ref>
+    </session>
+
+    <session>
+      <ejb-name>AdminPortal</ejb-name>
+      <jndi-name>TheAdminPortal</jndi-name>
+      <ejb-ref>
+        <ejb-ref-name>ejb/Customer</ejb-ref-name>
+        <jndi-name>TheCustomer</jndi-name>
+      </ejb-ref>
+      <ejb-ref>
+        <ejb-ref-name>ejb/Address</ejb-ref-name>
+        <jndi-name>TheAddress</jndi-name>
+      </ejb-ref>
+      <ejb-ref>
+        <ejb-ref-name>ejb/Country</ejb-ref-name>
+        <jndi-name>TheCountry</jndi-name>
+      </ejb-ref>
+      <ejb-ref>
+        <ejb-ref-name>ejb/Order</ejb-ref-name>
+        <jndi-name>TheOrder</jndi-name>
+      </ejb-ref>
+      <ejb-ref>
+        <ejb-ref-name>ejb/OrderLine</ejb-ref-name>
+        <jndi-name>TheOrderLine</jndi-name>
+      </ejb-ref>
+      <ejb-ref>
+        <ejb-ref-name>ejb/Cc_xact</ejb-ref-name>
+        <jndi-name>TheCc_xact</jndi-name>
+      </ejb-ref>
+      <ejb-ref>
+        <ejb-ref-name>ejb/Item</ejb-ref-name>
+        <jndi-name>TheItem</jndi-name>
+      </ejb-ref>
+      <ejb-ref>
+        <ejb-ref-name>ejb/Author</ejb-ref-name>
+        <jndi-name>TheAuthor</jndi-name>
+      </ejb-ref>
+      <resource-ref>
+        <res-ref-name>jdbc/TPCWDS</res-ref-name>
+        <resource-name>TPCWDS</resource-name>
+      </resource-ref>
+    </session>
+
+  </enterprise-beans>
+
+  <resource-managers>
+    <resource-manager res-class="javax.sql.DataSource">
+      <res-name>TPCWDS</res-name>
+      <res-jndi-name>java:/TPCWDS</res-jndi-name>
+    </resource-manager>
+  </resource-managers>
+
+</jboss>
