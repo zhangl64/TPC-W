@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE web-app PUBLIC '-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN' 'http://java.sun.com/j2ee/dtds/web-app_2_2.dtd'>
+
+<web-app>
+
+  <servlet>
+    <servlet-name>HomeServlet</servlet-name>
+    <servlet-class>edu.nyu.pdsg.tpcw.web.HomeServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>SearchRequestServlet</servlet-name>
+    <servlet-class>edu.nyu.pdsg.tpcw.web.SearchRequestServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>ExecuteSearchServlet</servlet-name>
+    <servlet-class>edu.nyu.pdsg.tpcw.web.ExecuteSearchServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>NewProductsServlet</servlet-name>
+    <servlet-class>edu.nyu.pdsg.tpcw.web.NewProductsServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>BestSellersServlet</servlet-name>
+    <servlet-class>edu.nyu.pdsg.tpcw.web.BestSellersServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>ItemDetailServlet</servlet-name>
+    <servlet-class>edu.nyu.pdsg.tpcw.web.ItemDetailServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>AdminRequestServlet</servlet-name>
+    <servlet-class>edu.nyu.pdsg.tpcw.web.AdminRequestServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>AdminProcessServlet</servlet-name>
+    <servlet-class>edu.nyu.pdsg.tpcw.web.AdminProcessServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>ShoppingCartServlet</servlet-name>
+    <servlet-class>edu.nyu.pdsg.tpcw.web.ShoppingCartServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>RegisterServlet</servlet-name>
+    <servlet-class>edu.nyu.pdsg.tpcw.web.RegisterServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>BuyServlet</servlet-name>
+    <servlet-class>edu.nyu.pdsg.tpcw.web.BuyServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>BuyConfirmServlet</servlet-name>
+    <servlet-class>edu.nyu.pdsg.tpcw.web.BuyConfirmServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>OrderInquiryServlet</servlet-name>
+    <servlet-class>edu.nyu.pdsg.tpcw.web.OrderInquiryServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>OrderDisplayServlet</servlet-name>
+    <servlet-class>edu.nyu.pdsg.tpcw.web.OrderDisplayServlet</servlet-class>
+  </servlet>
+
+
+  <servlet-mapping>
+    <servlet-name>HomeServlet</servlet-name>
+    <url-pattern>/home</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>SearchRequestServlet</servlet-name>
+    <url-pattern>/search</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>ExecuteSearchServlet</servlet-name>
+    <url-pattern>/execute_search</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>NewProductsServlet</servlet-name>
+    <url-pattern>/new_products</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>BestSellersServlet</servlet-name>
+    <url-pattern>/best_sellers</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>ItemDetailServlet</servlet-name>
+    <url-pattern>/item</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>AdminRequestServlet</servlet-name>
+    <url-pattern>/admin</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>AdminProcessServlet</servlet-name>
+    <url-pattern>/admin_process</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>ShoppingCartServlet</servlet-name>
+    <url-pattern>/cart</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>RegisterServlet</servlet-name>
+    <url-pattern>/register</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>BuyServlet</servlet-name>
+    <url-pattern>/buy</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>BuyConfirmServlet</servlet-name>
+    <url-pattern>/buy_confirm</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>OrderInquiryServlet</servlet-name>
+    <url-pattern>/order_status</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>OrderDisplayServlet</servlet-name>
+    <url-pattern>/order_display</url-pattern>
+  </servlet-mapping>
+
+  <session-config>
+    <session-timeout>5</session-timeout>
+  </session-config>
+
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+
+
+  <ejb-ref>
+    <ejb-ref-name>ejb/ShoppingCart</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>edu.nyu.pdsg.tpcw.ejb.cart.ShoppingCartHome</home>
+    <remote>edu.nyu.pdsg.tpcw.ejb.cart.ShoppingCart</remote>
+  </ejb-ref>
+
+  <ejb-ref>
+    <ejb-ref-name>ejb/Catalog</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>edu.nyu.pdsg.tpcw.ejb.catalog.CatalogHome</home>
+    <remote>edu.nyu.pdsg.tpcw.ejb.catalog.Catalog</remote>
+  </ejb-ref>
+
+  <ejb-ref>
+    <ejb-ref-name>ejb/AdminPortal</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>edu.nyu.pdsg.tpcw.ejb.adminportal.AdminPortalHome</home>
+    <remote>edu.nyu.pdsg.tpcw.ejb.adminportal.AdminPortal</remote>
+  </ejb-ref>
+
+</web-app>

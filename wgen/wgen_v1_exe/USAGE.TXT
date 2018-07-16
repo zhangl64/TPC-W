@@ -1,0 +1,14 @@
+
+USAGE W-gen generation utility to produce I_TITLE and A_LNAME fields
+--------------------------------------------------------------------
+
+Using tpcw.exe, generate two files in this directory 
+(see the WGEN_README.DOC file):
+
+1. I_TITLE.TXT: contains output for the I_TITLE field generation.
+2. A_LNAME.TXT: contains output for the A_LNAME field generation.
+
+Both text files MUST contain the number of samples identical
+to the number of items and authors, respectively.
+
+The ANT build script will put these files where appropriate.

@@ -1,0 +1,22 @@
+
+USAGE of image generation utility
+---------------------------------
+
+Use image_gen.bat script to generate images for the TPC-W benchmark:
+
+1. Edit image_gen.bat file to set correct value of NUM_IMAGES.
+2. Run image_gen.bat script: this will generate the NUM_IMAGES number
+   of images named item<number>.jpg in the same directory, according to 
+   the size distribution of the TPC-W spec. It will also generate
+   the same number of 5 KBt thumbnail images, named thumb<number>.jpg.
+3. Move them to the \docroot\images\items directory. They will be 
+   packaged into the WAR by the ANT build script.
+
+Currently, 100 images and their thumbnails are generated.
+We recommend not to increase this number, in order not to overload 
+the WAR file.
+
+The number of images (currently, 100) is also specified in the NUM_IMAGES
+field in the  edu.nyu.pdsg.tpcw.util.Constants  Java file. It is used to 
+populate ITEM table of the database. If you want to use more images, go through
+steps 1, 2, and 3, and update the  edu.nyu.pdsg.tpcw.util.Constants  Java file.
